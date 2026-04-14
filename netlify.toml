@@ -1,0 +1,31 @@
+# SpeckyTec — Netlify Configuration
+
+[build]
+  # Tell Netlify where to find the serverless functions
+  functions = "netlify/functions"
+
+[functions]
+  # Node.js runtime for the verify-subscriber function
+  node_bundler = "esbuild"
+
+[[headers]]
+  # Security headers for all pages
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  # Additional headers for the library page
+  for = "/library.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[redirects]]
+  # Redirect http to https
+  from = "http://speckytec.com/*"
+  to = "https://speckytec.com/:splat"
+  status = 301
+  force = true
