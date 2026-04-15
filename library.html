@@ -107,48 +107,18 @@ footer span{color:var(--gold)}
   <div class="gate-box">
     <div class="gate-icon">🔐</div>
     <h1 class="gate-title">Members Library</h1>
-
-    <!-- TAB SWITCHER -->
-    <div style="display:flex;gap:0;margin-bottom:1.5rem;border:1px solid rgba(255,255,255,0.15);border-radius:50px;overflow:hidden">
-      <button id="tab-subscriber" onclick="switchTab('subscriber')"
-        style="flex:1;padding:0.6rem 1rem;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:700;border:none;cursor:pointer;background:var(--gold);color:var(--navy);transition:all 0.2s">
-        Paid Subscriber
-      </button>
-      <button id="tab-charter" onclick="switchTab('charter')"
-        style="flex:1;padding:0.6rem 1rem;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:700;border:none;cursor:pointer;background:transparent;color:rgba(255,255,255,0.6);transition:all 0.2s">
-        Charter Member
-      </button>
-    </div>
-
-    <!-- PAID SUBSCRIBER PANEL -->
-    <div id="panel-subscriber">
-      <p style="font-size:0.92rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.6">Enter your subscriber email address to access the full report library.</p>
-      <input type="email" class="gate-input" id="gate-email" placeholder="Your subscriber email address" onkeydown="if(event.key==='Enter')checkAccess()"/>
-      <p class="gate-error" id="gate-error" style="display:none;color:#ff8a80;font-size:0.85rem;margin-bottom:0.8rem"></p>
-      <button class="gate-btn" onclick="checkAccess()">Access My Library →</button>
-    </div>
-
-    <!-- CHARTER MEMBER PANEL -->
-    <div id="panel-charter" style="display:none">
-      <div style="background:rgba(234,168,69,0.12);border:1px solid rgba(234,168,69,0.3);border-radius:12px;padding:0.8rem 1rem;margin-bottom:1.2rem">
-        <p style="font-size:0.85rem;color:var(--white);font-weight:600;margin:0">⭐ Charter Members — enter the access code from your welcome email to unlock the library for free.</p>
-      </div>
-      <input type="text" class="gate-input" id="charter-code" placeholder="Enter your charter access code"
-        style="letter-spacing:0.15em;text-transform:uppercase"
-        onkeydown="if(event.key==='Enter')checkCharter()"/>
-      <input type="email" class="gate-input" id="charter-email" placeholder="Your email address"
-        style="margin-top:10px"
-        onkeydown="if(event.key==='Enter')checkCharter()"/>
-      <p class="gate-error" id="charter-error" style="display:none;color:#ff8a80;font-size:0.85rem;margin-bottom:0.8rem"></p>
-      <button class="gate-btn" onclick="checkCharter()">Access My Library →</button>
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.4);margin-top:0.8rem;text-align:center">Check your welcome email for your charter access code.<br/>No email? <a href="mailto:hello@speckytec.com" style="color:var(--gold)">Contact us</a></p>
-    </div>
-
+    <p style="font-size:0.92rem;color:rgba(255,255,255,0.75);margin-bottom:1.5rem;line-height:1.6;text-align:center">
+      This area is exclusively for SpeckyTec paid subscribers.<br/>
+      Enter the email address you used when subscribing.
+    </p>
+    <input type="email" class="gate-input" id="gate-email" placeholder="Your subscriber email address" onkeydown="if(event.key==='Enter')checkAccess()"/>
+    <p class="gate-error" id="gate-error" style="display:none;color:#ff8a80;font-size:0.85rem;margin-bottom:0.8rem"></p>
+    <button class="gate-btn" onclick="checkAccess()">Access My Library →</button>
     <hr class="gate-divider"/>
     <p class="gate-upgrade">
-      Not a member yet?<br/>
-      <a href="index.html#pricing">Subscribe from $9.99/month</a> for full access.<br/><br/>
-      Register free as a <a href="index.html#newsletter">Charter Member here</a>.
+      Not a subscriber yet?<br/>
+      <a href="index.html#pricing">Subscribe from $9.99/month</a> to get full library access.<br/><br/>
+      Just want the free newsletter? <a href="index.html#newsletter">Sign up as a Charter Member here</a> — be first to know when we launch.
     </p>
   </div>
 </div>
@@ -280,7 +250,7 @@ function toggleMenu(){
 function checkAccess() {
   var email = document.getElementById('gate-email').value.trim().toLowerCase();
   var err = document.getElementById('gate-error');
-  var btn = document.getElementById('panel-subscriber').querySelector('button');
+  var btn = document.querySelector('.gate-btn');
   err.style.display = 'none';
 
   if (!email || !email.includes('@')) {
@@ -315,47 +285,6 @@ function checkAccess() {
     err.textContent = 'Verification failed. Please try again or contact hello@speckytec.com';
     err.style.display = 'block';
   });
-}
-
-// Charter codes and tab switcher
-var CHARTER_CODES = {
-  'CHARTER2026': 'Charter Member',
-  'SPECKY2026':  'Charter Member',
-  'FOUNDING50':  'Founding Member'
-};
-
-function switchTab(tab) {
-  var isSub = tab === 'subscriber';
-  document.getElementById('panel-subscriber').style.display = isSub ? 'block' : 'none';
-  document.getElementById('panel-charter').style.display   = isSub ? 'none'  : 'block';
-  document.getElementById('tab-subscriber').style.background = isSub ? 'var(--gold)' : 'transparent';
-  document.getElementById('tab-subscriber').style.color      = isSub ? 'var(--navy)'  : 'rgba(255,255,255,0.6)';
-  document.getElementById('tab-charter').style.background   = isSub ? 'transparent' : 'var(--gold)';
-  document.getElementById('tab-charter').style.color        = isSub ? 'rgba(255,255,255,0.6)' : 'var(--navy)';
-}
-
-function checkCharter() {
-  var code  = document.getElementById('charter-code').value.trim().toUpperCase();
-  var email = document.getElementById('charter-email').value.trim().toLowerCase();
-  var err   = document.getElementById('charter-error');
-  err.style.display = 'none';
-
-  if (!code) {
-    err.textContent = 'Please enter your charter access code.';
-    err.style.display = 'block';
-    return;
-  }
-  if (!email || !email.includes('@')) {
-    err.textContent = 'Please enter your email address.';
-    err.style.display = 'block';
-    return;
-  }
-  if (CHARTER_CODES[code]) {
-    grantAccess(email, 'Charter Member', 'charter-' + code);
-  } else {
-    err.textContent = 'Code not recognised. Please check your welcome email or contact hello@speckytec.com';
-    err.style.display = 'block';
-  }
 }
 
 function grantAccess(email, name, token) {
