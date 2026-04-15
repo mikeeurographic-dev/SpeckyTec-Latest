@@ -107,18 +107,15 @@ footer span{color:var(--gold)}
   <div class="gate-box">
     <div class="gate-icon">🔐</div>
     <h1 class="gate-title">Members Library</h1>
-    <p style="font-size:0.92rem;color:rgba(255,255,255,0.75);margin-bottom:1.5rem;line-height:1.6;text-align:center">
-      This area is exclusively for SpeckyTec paid subscribers.<br/>
-      Enter the email address you used when subscribing.
-    </p>
+    <p class="gate-sub">This area is exclusively for SpeckyTec paid subscribers. Enter your subscriber email address to access the full report library.</p>
     <input type="email" class="gate-input" id="gate-email" placeholder="Your subscriber email address" onkeydown="if(event.key==='Enter')checkAccess()"/>
-    <p class="gate-error" id="gate-error" style="display:none;color:#ff8a80;font-size:0.85rem;margin-bottom:0.8rem"></p>
+    <p class="gate-error" id="gate-error">That email isn't recognised as a subscriber. Please check your email or subscribe below.</p>
     <button class="gate-btn" onclick="checkAccess()">Access My Library →</button>
     <hr class="gate-divider"/>
     <p class="gate-upgrade">
       Not a subscriber yet?<br/>
-      <a href="index.html#pricing">Subscribe from $9.99/month</a> to get full library access.<br/><br/>
-      Just want the free newsletter? <a href="index.html#newsletter">Sign up as a Charter Member here</a> — be first to know when we launch.
+      <a href="index.html#pricing">Subscribe from $9.99/month</a> to get full access.<br/><br/>
+      Just want the free newsletter? <a href="index.html#newsletter">Sign up free here</a>.
     </p>
   </div>
 </div>
@@ -247,80 +244,68 @@ function toggleMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-function checkAccess() {
+// ── ACCESS CONTROL ──────────────────────────────────────────────────────────
+// IMPORTANT: This is a front-end only gate — it keeps casual visitors out
+// but is NOT a substitute for server-side authentication.
+// To properly protect PDFs, host them in a private folder and only
+// generate signed/expiring URLs for verified subscribers via a backend.
+// For now, connect this to your Stripe subscriber list via a simple
+// serverless function on Netlify — ask your developer or Specky support.
+
+var DEMO_SUBSCRIBERS = [
+  // Add your own email here for testing:
+  // "your@email.com"
+];
+
+function checkAccess(){
   var email = document.getElementById('gate-email').value.trim().toLowerCase();
   var err = document.getElementById('gate-error');
-  var btn = document.querySelector('.gate-btn');
-  err.style.display = 'none';
-
-  if (!email || !email.includes('@')) {
+  
+  if(!email || !email.includes('@')){
     err.textContent = 'Please enter a valid email address.';
     err.style.display = 'block';
     return;
   }
 
-  btn.textContent = 'Checking subscription...';
-  btn.disabled = true;
+  // Check demo list (replace with real API call to Stripe/HubSpot)
+  if(DEMO_SUBSCRIBERS.includes(email)){
+    grantAccess(email);
+    return;
+  }
 
-  fetch('/.netlify/functions/verify-subscriber', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    btn.textContent = 'Access My Library →';
-    btn.disabled = false;
-    if (data.active) {
-      grantAccess(email, data.name, data.token);
-    } else {
-      err.textContent = data.message ||
-        'No active subscription found. Use the Charter Member tab if you registered free.';
-      err.style.display = 'block';
-    }
-  })
-  .catch(function(e) {
-    btn.textContent = 'Access My Library →';
-    btn.disabled = false;
-    err.textContent = 'Verification failed. Please try again or contact hello@speckytec.com';
-    err.style.display = 'block';
-  });
+  // TODO: Replace with real Stripe subscriber check
+  // fetch('/api/check-subscriber?email=' + encodeURIComponent(email))
+  //   .then(r => r.json())
+  //   .then(d => { if(d.active) grantAccess(email); else showError(); })
+
+  // For now show the real integration note
+  err.textContent = 'Subscriber verification not yet connected. Add your email to the DEMO_SUBSCRIBERS list for testing.';
+  err.style.display = 'block';
 }
 
-function grantAccess(email, name, token) {
+function grantAccess(email){
   sessionStorage.setItem('specky_access', '1');
   sessionStorage.setItem('specky_email', email);
-  sessionStorage.setItem('specky_token', token || '');
   document.getElementById('gate').style.display = 'none';
   document.getElementById('library-content').style.display = 'block';
-  var displayName = name || email.split('@')[0];
-  displayName = displayName.charAt(0).toUpperCase() + displayName.slice(1);
-  document.getElementById('member-name').textContent = displayName;
+  var name = email.split('@')[0];
+  name = name.charAt(0).toUpperCase() + name.slice(1);
+  document.getElementById('member-name').textContent = name;
 }
 
-function logout() {
+function logout(){
   sessionStorage.removeItem('specky_access');
   sessionStorage.removeItem('specky_email');
-  sessionStorage.removeItem('specky_token');
   document.getElementById('gate').style.display = 'flex';
   document.getElementById('library-content').style.display = 'none';
   document.getElementById('gate-email').value = '';
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-  var emailInput = document.getElementById('gate-email');
-  if (emailInput) {
-    emailInput.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') checkAccess();
-    });
+// Auto-restore session if already granted this browser session
+window.onload = function(){
+  if(sessionStorage.getItem('specky_access') === '1'){
+    grantAccess(sessionStorage.getItem('specky_email'));
   }
-  if (sessionStorage.getItem('specky_access') === '1') {
-    grantAccess(
-      sessionStorage.getItem('specky_email'),
-      null,
-      sessionStorage.getItem('specky_token')
-    );
-  }
-});
+};
 </script>
 </body></html>
