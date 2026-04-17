@@ -213,31 +213,31 @@ body{padding-top:70px}
 </section>
 
 
-<!-- CHARTER MEMBER OFFER -->
+<!-- COMING SOON BANNER -->
 <div style="background:rgba(234,168,69,0.08);border-top:1px solid rgba(234,168,69,0.2);border-bottom:1px solid rgba(234,168,69,0.2);padding:2.5rem 5%">
-<div style="max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
-<div>
-<span style="display:inline-block;background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:800;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.35rem 1rem;border-radius:50px;margin-bottom:1rem">Charter Member Offer</span>
-<h2 style="font-family:'Nunito',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:900;line-height:1.1;margin-bottom:0.8rem;color:var(--white)">Be First in Line When We Launch</h2>
-<p style="font-size:1rem;color:var(--muted);line-height:1.75;font-weight:400">We are building our report library right now — 20 reports in production. Sign up for the free newsletter today and as one of our first 50 subscribers you will receive your <strong style="color:var(--gold)">first month for just $4.99</strong> — that's 50% off, exclusively for charter members. After your first month it's $9.99/month, cancel any time.</p>
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap">
+    <div>
+      <span style="display:inline-block;background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 1rem;border-radius:50px;margin-bottom:0.8rem">
+        Launching Soon
+      </span>
+      <h2 style="font-family:'Nunito',sans-serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:900;line-height:1.2;margin-bottom:0.6rem;color:var(--white)">
+        20 Reports in Production — Join the Waitlist
+      </h2>
+      <p style="font-size:0.95rem;color:var(--muted);line-height:1.7;max-width:560px">
+        We are building our full report library before going public. Sign up for the free weekly newsletter to be notified the moment we launch — and be first in line for our early access offer.
+      </p>
+    </div>
+    <a href="#newsletter" style="display:inline-block;background:var(--gold);color:var(--navy);
+      font-family:'Nunito',sans-serif;font-weight:900;padding:0.9rem 2.2rem;border-radius:50px;
+      text-decoration:none;font-size:1rem;white-space:nowrap;letter-spacing:0.02em;
+      box-shadow:0 4px 15px rgba(234,168,69,0.4)"
+      onmouseover="this.style.background='#f5c87a';this.style.transform='translateY(-2px)'"
+      onmouseout="this.style.background='var(--gold)';this.style.transform='translateY(0)'">
+      Join the Waitlist &#8594;
+    </a>
+  </div>
 </div>
-<div style="text-align:center">
-<div style="background:rgba(255,255,255,0.06);border:2px solid var(--gold);border-radius:20px;padding:2rem;display:inline-block;min-width:240px">
-<div style="font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;color:var(--gold);line-height:1;margin-bottom:0.8rem">&#128640; Launching Soon</div>
-<div style="font-size:0.95rem;color:var(--muted);font-weight:500;margin-bottom:1.5rem;line-height:1.6">20 reports in production.<br/>First 50 subscribers get an exclusive<br/><strong style="color:var(--gold)">launch discount</strong> on their first month.</div>
-<a href="#newsletter" style="display:block;text-align:center;background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:800;padding:0.85rem 2rem;border-radius:50px;font-size:1rem;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 18px rgba(234,168,69,0.38)">Claim My Charter Spot &#8594;</a>
-<p style="font-size:0.75rem;color:var(--muted);margin-top:0.8rem;font-weight:500">Free to register &middot; No credit card needed</p>
-</div>
-</div>
-</div>
-</div>
-<script>
-var CHARTER_TAKEN=0;
-var CHARTER_TOTAL=50;
-var remaining=CHARTER_TOTAL-CHARTER_TAKEN;
-document.getElementById("spots-remaining").textContent=remaining;
-document.getElementById("spots-bar").style.width=((remaining/CHARTER_TOTAL)*100)+"%";
-</script>
+
 <!-- SAVINGS BANNER -->
 <div style="background:linear-gradient(135deg,var(--teal) 0%,#0a5248 100%);padding:2rem 5%">
   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
@@ -283,9 +283,9 @@ document.getElementById("spots-bar").style.width=((remaining/CHARTER_TOTAL)*100)
   <div>
     <!-- CUSTOM HUBSPOT API FORM -->
     <h3 style="font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:900;color:var(--white);margin-bottom:0.5rem">Get the Weekly Report That Saves You Money</h3>
-    <div style="background:rgba(234,168,69,0.15);border:1px solid rgba(234,168,69,0.4);border-radius:12px;padding:0.8rem 1.2rem;margin-bottom:1rem;display:flex;align-items:center;gap:10px">
-      <span style="font-size:1.4rem">&#127775;</span>
-      <p style="font-size:0.9rem;color:var(--white);font-weight:700;margin:0">⭐ Charter Member Offer: Sign up now and get your <span style="color:var(--gold)">first month for just $4.99</span> — 50% off, exclusively for our first 50 subscribers. Then $9.99/month, cancel any time.</p>
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:0.8rem 1.2rem;margin-bottom:1rem;display:flex;align-items:center;gap:10px">
+      <span style="font-size:1.4rem">🚀</span>
+      <p style="font-size:0.9rem;color:rgba(255,255,255,0.8);font-weight:600;margin:0">We are currently building our report library. Sign up to be notified the moment we launch — and be first in line for our early access offer.</p>
     </div>
     <p style="font-size:0.92rem;color:rgba(255,255,255,0.75);margin-bottom:1.5rem;font-weight:400">Join free. One honest tech briefing every week. No spam, no affiliate links, no hype.</p>
     <div id="hs-custom-form">
@@ -326,7 +326,7 @@ document.getElementById("spots-bar").style.width=((remaining/CHARTER_TOTAL)*100)
         <button onclick="submitHubSpot()"
           style="background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:800;padding:0.9rem 2rem;border-radius:50px;font-size:1rem;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 18px rgba(234,168,69,0.35);width:100%"
           onmouseover="this.style.background='var(--gold2)'" onmouseout="this.style.background='var(--gold)'">
-          Claim My Charter Spot &#8594;
+          Join the Waitlist &#8594;
         </button>
         <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);font-family:'Nunito',sans-serif;text-align:center;font-weight:500">No spam &middot; Unsubscribe any time &middot; Free forever</p>
       </div>
@@ -334,7 +334,7 @@ document.getElementById("spots-bar").style.width=((remaining/CHARTER_TOTAL)*100)
     <div id="hs-success" style="display:none;padding:2rem;border:2px solid var(--gold);border-radius:20px;text-align:center">
       <div style="font-size:2.5rem;margin-bottom:0.5rem">&#127881;</div>
       <p style="font-size:1.2rem;font-weight:900;color:var(--gold);margin-bottom:0.5rem;font-family:'Nunito',sans-serif">You're in! &#127775;</p>
-      <p style="font-size:0.95rem;color:rgba(255,255,255,0.75);font-family:'Nunito',sans-serif;line-height:1.6">Welcome to SpeckyTec. You are now registered as a <strong style="color:var(--gold)">Charter Member</strong>. As one of our first 50 subscribers you'll receive your <strong>first month for just $4.99</strong> — 50% off the regular price. We will email you the moment the library goes live.</p>
+      <p style="font-size:0.95rem;color:rgba(255,255,255,0.75);font-family:'Nunito',sans-serif;line-height:1.6">Welcome to SpeckyTec. You are now registered as a <strong style="color:var(--gold)">on our waitlist</strong>. We will email you the moment the library goes live with details of our early access offer.</p>
     </div>
     <script>
     function submitHubSpot() {
@@ -430,7 +430,7 @@ document.getElementById("spots-bar").style.width=((remaining/CHARTER_TOTAL)*100)
   <h2 class="section-title">Simple, Honest Pricing</h2>
   <div style="background:rgba(234,168,69,0.08);border:1px solid rgba(234,168,69,0.2);border-radius:16px;padding:1rem 1.5rem;margin-bottom:1rem;display:flex;align-items:center;gap:10px">
     <span style="font-size:1.2rem">&#127775;</span>
-    <p style="font-size:0.9rem;color:rgba(255,255,255,0.85);font-weight:600;margin:0">Charter offer: <a href="#newsletter" style="color:var(--gold);font-weight:800;text-decoration:underline" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'});return false">Sign up free above</a> as one of our first 50 Charter Members and receive an <span style="color:var(--gold)"><span style="color:var(--gold)">first month for just $4.99</span> — 50% off, exclusively for charter members.</p>
+    <p style="font-size:0.9rem;color:rgba(255,255,255,0.85);font-weight:600;margin:0">Charter offer: <a href="#newsletter" style="color:var(--gold);font-weight:800;text-decoration:underline" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'});return false">Sign up free above</a> as one of our first 50 Charter Members and receive an <span style="color:var(--gold)">notified at launch with our early access offer.</p>
   </div>
   <p class="section-sub">At $9.99 a month, one good comparison report could save you more than a year's subscription. How much did your last laptop really need to cost?</p>
   <div class="plans">
@@ -446,7 +446,7 @@ document.getElementById("spots-bar").style.width=((remaining/CHARTER_TOTAL)*100)
         <li><strong style="color:var(--gold)">Exclusive launch discount — Charter members only</strong></li>
         <li>No credit card needed — ever</li>
       </ul>
-      <a href="#newsletter" style="display:block;text-align:center;padding:0.85rem;border-radius:50px;font-size:0.95rem;font-weight:800;text-decoration:none;background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;transition:all 0.2s;box-shadow:0 4px 14px rgba(234,168,69,0.3)" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'});return false">Claim My Charter Spot — Free &#8594;</a>
+      <a href="#newsletter" style="display:block;text-align:center;padding:0.85rem;border-radius:50px;font-size:0.95rem;font-weight:800;text-decoration:none;background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;transition:all 0.2s;box-shadow:0 4px 14px rgba(234,168,69,0.3)" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'});return false">Join the Waitlist — Free &#8594;</a>
       <p style="font-size:0.75rem;color:rgba(255,255,255,0.4);text-align:center;margin-top:0.8rem;font-weight:500">No credit card · No payment · Free forever</p>
     </div>
     <div class="plan plan-featured">
