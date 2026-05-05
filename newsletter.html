@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SpeckyTec Newsletter — Weekly Tech Intelligence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5ca230c9fb6af900122ed227&product=sticky-share-buttons' async='async'></script>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-brand"><img src="images/image_1.png" alt="SpeckyTec" class="nav-logo-img"/><span class="nav-wordmark">Specky<span>Tec</span></span></a>
+  <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="reports.html">Reports</a></li><li><a href="blog.html">Blog</a></li><li><a href="library.html">Library</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="newsletter.html">Newsletter</a></li><li><a href="index.html#pricing" class="nav-cta">Subscribe</a></li></ul>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="reports.html">Reports</a><a href="blog.html">Blog</a><a href="library.html">Library</a><a href="index.html#pricing">Pricing</a><a href="newsletter.html">Newsletter</a><a href="index.html#pricing" style="color:var(--gold);font-weight:800">Subscribe →</a></div>
+
+<!-- NEWSLETTER HERO -->
+<section style="background:linear-gradient(135deg,var(--navy) 0%,#1a3a6b 60%,#0e6b5e 100%);padding:80px 5% 60px">
+  <div style="max-width:700px;margin:0 auto;text-align:center">
+    <span style="display:inline-block;background:rgba(234,168,69,0.15);border:1px solid rgba(234,168,69,0.4);color:var(--gold);font-size:0.75rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:50px;margin-bottom:1.5rem">Free Weekly Newsletter</span>
+    <h1 style="font-family:'Nunito',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:1rem">Stay Informed.<br/>Stay Ahead.</h1>
+    <p style="font-size:1.05rem;color:rgba(255,255,255,0.75);line-height:1.7;max-width:560px;margin:0 auto 1rem">One honest tech briefing every week. No hype, no affiliate links, no marketing spin — just clear analysis that helps you make smarter buying decisions.</p>
+    <p style="font-size:0.9rem;color:rgba(255,255,255,0.5)">No spam · Unsubscribe any time · Free forever</p>
+  </div>
+</section>
+
+<!-- NEWSLETTER FORM -->
+<div class="newsletter-wrap" style="padding:60px 5%">
+<div style="max-width:620px;margin:0 auto">
+
+  <div id="hs-custom-form">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <input type="text" id="hs-firstname" placeholder="First name"
+        style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:0.85rem 1.4rem;font-family:'Nunito',sans-serif;font-size:0.95rem;color:#ffffff;outline:none;width:100%;font-weight:500;transition:border-color 0.2s"
+        onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'"/>
+      <input type="email" id="hs-email" placeholder="Email address"
+        style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:0.85rem 1.4rem;font-family:'Nunito',sans-serif;font-size:0.95rem;color:#ffffff;outline:none;width:100%;font-weight:500;transition:border-color 0.2s"
+        onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'"/>
+      <select id="hs-interest"
+        style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:0.85rem 1.4rem;font-family:'Nunito',sans-serif;font-size:0.95rem;color:#ffffff;outline:none;width:100%;font-weight:500;cursor:pointer;appearance:none;-webkit-appearance:none">
+        <option value="" style="background:#17294b">What tech are you most interested in?</option>
+        <option value="Smartphones" style="background:#17294b">Smartphones</option>
+        <option value="Laptops &amp; Desktops" style="background:#17294b">Laptops &amp; Desktops</option>
+        <option value="Smart Home &amp; Appliances" style="background:#17294b">Smart Home &amp; Appliances</option>
+        <option value="Audio &amp; Wearables" style="background:#17294b">Audio &amp; Wearables</option>
+        <option value="Cameras &amp; Monitors" style="background:#17294b">Cameras &amp; Monitors</option>
+        <option value="Accessories &amp; Peripherals" style="background:#17294b">Accessories &amp; Peripherals</option>
+        <option value="All Topics" style="background:#17294b">All Topics</option>
+      </select>
+      <textarea id="hs-commission"
+        placeholder="Commission a report (optional) — tell us your country, product, or topic and we'll build it for you"
+        rows="2"
+        style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:16px;padding:0.85rem 1.4rem;font-family:'Nunito',sans-serif;font-size:0.92rem;color:#ffffff;outline:none;width:100%;font-weight:500;resize:none;transition:border-color 0.2s"
+        onfocus="this.style.borderColor='var(--gold)'"
+        onblur="this.style.borderColor='rgba(255,255,255,0.2)'"></textarea>
+      <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:0.5rem 0">
+        <input type="checkbox" id="hs-consent"
+          style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);cursor:pointer"/>
+        <span style="font-size:0.82rem;color:rgba(255,255,255,0.80);line-height:1.6;font-family:'Nunito',sans-serif;font-weight:500">
+          I agree to receive the weekly SpeckyTec newsletter and occasional updates. I understand I can unsubscribe at any time.
+          View our <a href="privacy.html" style="color:var(--gold);font-weight:700;text-decoration:underline">Privacy Policy</a>.
+        </span>
+      </label>
+      <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:0.2rem 0">
+        <input type="checkbox" id="hs-data-consent"
+          style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);cursor:pointer"/>
+        <span style="font-size:0.82rem;color:rgba(255,255,255,0.80);line-height:1.6;font-family:'Nunito',sans-serif;font-weight:500">
+          I agree to allow SpeckyTec to store and process my personal data as described in the Privacy Policy.
+        </span>
+      </label>
+      <p id="hs-error" style="display:none;color:#ff8a80;font-size:0.85rem;font-family:'Nunito',sans-serif;padding:0 0.5rem"></p>
+      <button onclick="submitHubSpot()"
+        style="background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:800;padding:0.9rem 2rem;border-radius:50px;font-size:1rem;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 18px rgba(234,168,69,0.35);width:100%"
+        onmouseover="this.style.background='var(--gold2)'" onmouseout="this.style.background='var(--gold)'">
+        Get the Newsletter &#8594;
+      </button>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);font-family:'Nunito',sans-serif;text-align:center;font-weight:500">No spam &middot; Unsubscribe any time</p>
+    </div>
+  </div>
+
+  <div id="hs-success" style="display:none;padding:2rem;border:2px solid var(--gold);border-radius:20px;text-align:center">
+    <div style="font-size:2.5rem;margin-bottom:0.5rem">&#127881;</div>
+    <p style="font-size:1.2rem;font-weight:900;color:var(--gold);margin-bottom:0.5rem;font-family:'Nunito',sans-serif">You're in! &#127775;</p>
+    <p style="font-size:0.95rem;color:rgba(255,255,255,0.75);font-family:'Nunito',sans-serif;line-height:1.6">Welcome to SpeckyTec. You'll receive our weekly newsletter with the latest honest tech intelligence.<br/><br/>
+    <strong style="color:var(--gold);font-size:1rem">A Word to the Wise</strong><br/>
+    The average reader saves far more than the cost of a subscription on their very first purchase decision. One good report is all it takes.</p>
+  </div>
+
+  <!-- Upgrade prompt -->
+  <div style="margin-top:2.5rem;padding:1.5rem;background:rgba(234,168,69,0.08);border:1px solid rgba(234,168,69,0.25);border-radius:16px;text-align:center">
+    <p style="font-family:'Nunito',sans-serif;font-size:0.95rem;color:rgba(255,255,255,0.75);margin-bottom:0.8rem">Ready for full library access? Browse and download every report we publish.</p>
+    <a href="index.html#pricing" style="display:inline-block;background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:800;font-size:0.95rem;padding:0.75rem 2rem;border-radius:50px;text-decoration:none">See Pricing — from $9.99/month &#8594;</a>
+  </div>
+
+  <script src="script.js"></script>
+</div>
+</div>
+
+<div style="border-top:1px solid rgba(255,255,255,0.08);padding:1.5rem 5%;font-size:0.78rem;color:rgba(255,255,255,0.4);line-height:1.7;text-align:center">
+  <strong style="color:rgba(255,255,255,0.6)">Disclaimer:</strong> All prices, specifications, fuel costs, and product details featured on this website and in our reports are for informational purposes only. Figures are accurate at the time of publication but change rapidly — always conduct your own research and verify current prices before making any purchasing decision. SpeckyTec accepts no liability for decisions made based on the information provided. Reports should not be considered financial or professional advice.
+</div>
+<footer>&copy; 2026 <span>SpeckyTec</span> · Weekly Tech Intelligence · All rights reserved · <a href="privacy.html" style="color:var(--gold);text-decoration:none;font-weight:700">Privacy Policy</a></footer>
+
+<script>
+function toggleMenu(){
+  var m=document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+</script>
+
+</body></html>
