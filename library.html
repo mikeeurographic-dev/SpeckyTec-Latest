@@ -109,17 +109,7 @@ footer span{color:var(--gold)}
     <div class="gate-icon">🔐</div>
     <h1 class="gate-title">Members Library</h1>
 
-    <!-- TAB SWITCHER -->
-    <div style="display:flex;gap:0;margin-bottom:1.5rem;border:1px solid rgba(255,255,255,0.15);border-radius:50px;overflow:hidden">
-      <button id="tab-paid" onclick="switchTab('paid')"
-        style="flex:1;padding:0.6rem 1rem;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:700;border:none;cursor:pointer;background:var(--gold);color:var(--navy);transition:all 0.2s">
-        Paid Subscriber
-      </button>
-      <button id="tab-charter" onclick="switchTab('charter')"
-        style="flex:1;padding:0.6rem 1rem;font-family:'Nunito',sans-serif;font-size:0.88rem;font-weight:700;border:none;cursor:pointer;background:transparent;color:rgba(255,255,255,0.6);transition:all 0.2s">
-        ⭐ Charter Member
-      </button>
-    </div>
+    <!-- TAB SWITCHER removed - single panel only -->
 
     <!-- PAID SUBSCRIBER PANEL -->
     <div id="panel-paid">
@@ -131,32 +121,12 @@ footer span{color:var(--gold)}
       <button class="gate-btn" onclick="checkAccess()">Access My Library →</button>
     </div>
 
-    <!-- CHARTER MEMBER PANEL -->
-    <div id="panel-charter" style="display:none">
-      <div style="background:rgba(234,168,69,0.12);border:1px solid rgba(234,168,69,0.3);border-radius:12px;padding:0.8rem 1rem;margin-bottom:1.2rem">
-        <p style="font-size:0.85rem;color:var(--white);font-weight:600;margin:0;text-align:center">
-          ⭐ Charter Members — enter your private access code and email address to unlock the full library.
-        </p>
-      </div>
-      <input type="text" class="gate-input" id="charter-code"
-        placeholder="Access code (e.g. SPECKY50)"
-        style="letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px"
-        onkeydown="if(event.key==='Enter')checkCharter()"/>
-      <input type="email" class="gate-input" id="charter-email"
-        placeholder="Your email address"
-        onkeydown="if(event.key==='Enter')checkCharter()"/>
-      <p id="charter-error" style="display:none;color:#ff8a80;font-size:0.85rem;margin-bottom:0.8rem"></p>
-      <button class="gate-btn" onclick="checkCharter()">Access My Library →</button>
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.35);margin-top:0.8rem;text-align:center">
-        Check your invitation email for your private access code.
-      </p>
-    </div>
+    <!-- Charter Member panel removed -->
 
     <hr class="gate-divider"/>
     <p class="gate-upgrade">
       Not a member yet?<br/>
-      <a href="index.html#pricing">Subscribe from $9.99/month</a> for full library access.<br/><br/>
-      Register free as a <a href="index.html#newsletter">Charter Member here</a>.
+      <a href="index.html#pricing">Subscribe from $9.99/month</a> for full library access.
     </p>
   </div>
 </div>
@@ -212,8 +182,7 @@ footer span{color:var(--gold)}
         color:var(--gold);margin-bottom:0.5rem">Library Under Construction</h2>
       <p style="font-size:0.92rem;color:rgba(255,255,255,0.75);line-height:1.7;max-width:600px;margin:0 auto">
         We are currently building our report library — 20 reports in production.
-        As a Charter Member you have early access and will be among the first to
-        read each report as it is published. Check back regularly for new additions.
+        Check back regularly for new additions.
       </p>
     </div>
 
@@ -618,10 +587,9 @@ footer span{color:var(--gold)}
       <h3 style="font-family:'Nunito',sans-serif;font-size:1.1rem;font-weight:900;
         color:var(--gold);margin-bottom:0.5rem">Your Feedback Matters</h3>
       <p style="font-size:0.88rem;color:rgba(255,255,255,0.7);line-height:1.7;max-width:550px;margin:0 auto 1rem">
-        As a Charter Member you are helping shape SpeckyTec before public launch.
         Found an error? Have a suggestion? We read every message personally.
       </p>
-      <a href="mailto:hello@speckytec.com?subject=Charter Member Feedback"
+      <a href="mailto:hello@speckytec.com?subject=Member Feedback"
         style="display:inline-block;background:var(--gold);color:var(--navy);
         font-family:'Nunito',sans-serif;font-weight:800;font-size:0.88rem;
         padding:0.6rem 1.5rem;border-radius:50px;text-decoration:none">
@@ -638,47 +606,7 @@ function toggleMenu(){
   document.getElementById('mobileMenu').classList.toggle('open');
 }
 
-// Charter access codes
-// Add new codes here as needed — format: 'CODE': 'Member Name'
-var CHARTER_CODES = {
-  'SPECKY50':    'Charter Member',
-  'FOUNDING50':  'Charter Member',
-  'SPECKYTEC26': 'Charter Member',
-};
-
-function switchTab(tab) {
-  var isPaid = tab === 'paid';
-  document.getElementById('panel-paid').style.display    = isPaid ? 'block' : 'none';
-  document.getElementById('panel-charter').style.display = isPaid ? 'none'  : 'block';
-  document.getElementById('tab-paid').style.background    = isPaid ? 'var(--gold)' : 'transparent';
-  document.getElementById('tab-paid').style.color         = isPaid ? 'var(--navy)' : 'rgba(255,255,255,0.6)';
-  document.getElementById('tab-charter').style.background = isPaid ? 'transparent' : 'var(--gold)';
-  document.getElementById('tab-charter').style.color      = isPaid ? 'rgba(255,255,255,0.6)' : 'var(--navy)';
-}
-
-function checkCharter() {
-  var code  = document.getElementById('charter-code').value.trim().toUpperCase();
-  var email = document.getElementById('charter-email').value.trim().toLowerCase();
-  var err   = document.getElementById('charter-error');
-  err.style.display = 'none';
-
-  if (!code) {
-    err.textContent = 'Please enter your charter access code.';
-    err.style.display = 'block';
-    return;
-  }
-  if (!email || !email.includes('@')) {
-    err.textContent = 'Please enter your email address.';
-    err.style.display = 'block';
-    return;
-  }
-  if (CHARTER_CODES[code]) {
-    grantAccess(email, 'Charter Member', 'charter-' + code);
-  } else {
-    err.textContent = 'Access code not recognised. Please check your invitation email or contact hello@speckytec.com';
-    err.style.display = 'block';
-  }
-}
+// No charter codes — paid subscribers only
 
 function checkAccess() {
   var email = document.getElementById('gate-email').value.trim().toLowerCase();
@@ -708,7 +636,7 @@ function checkAccess() {
       grantAccess(email, data.name, data.token);
     } else {
       err.textContent = data.message ||
-        'No active subscription found. Use the Charter Member tab if you registered free.';
+        'No active subscription found. Please check your email address or subscribe at speckytec.com';
       err.style.display = 'block';
     }
   })

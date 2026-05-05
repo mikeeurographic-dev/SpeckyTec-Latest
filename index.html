@@ -13,12 +13,12 @@
 <body>
 <nav>
   <a href="index.html" class="nav-brand"><img src="images/image_1.png" alt="SpeckyTec" class="nav-logo-img"/><span class="nav-wordmark">Specky<span>Tec</span></span></a>
-  <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="reports.html">Reports</a></li><li><a href="blog.html">Blog</a></li><li><a href="library.html">Library</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="newsletter.html">Newsletter</a></li><li><a href="index.html#pricing" class="nav-cta">Subscribe</a></li></ul>
+  <ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="reports.html">Reports</a></li><li><a href="blog.html">Blog</a></li><li><a href="library.html">Library</a></li><li><a href="index.html#pricing">Pricing</a></li><li><a href="index.html#newsletter" class="nav-cta">Subscribe</a></li></ul>
   <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
-<div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="reports.html">Reports</a><a href="blog.html">Blog</a><a href="library.html">Library</a><a href="index.html#pricing">Pricing</a><a href="newsletter.html">Newsletter</a><a href="index.html#pricing" style="color:var(--gold);font-weight:800">Subscribe →</a></div>
+<div class="mobile-menu" id="mobileMenu"><a href="index.html">Home</a><a href="reports.html">Reports</a><a href="blog.html">Blog</a><a href="library.html">Library</a><a href="index.html#pricing">Pricing</a><a href="index.html#newsletter" style="color:var(--gold);font-weight:800">Subscribe →</a></div>
 
 <!-- HERO -->
 <section class="hero">
@@ -48,9 +48,6 @@
 <div style="background:rgba(234,168,69,0.08);border-top:1px solid rgba(234,168,69,0.2);border-bottom:1px solid rgba(234,168,69,0.2);padding:2.5rem 5%">
   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap">
     <div>
-      <span style="display:inline-block;background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;font-size:0.75rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 1rem;border-radius:50px;margin-bottom:0.8rem">
-        Launching Soon
-      </span>
       <h2 style="font-family:'Nunito',sans-serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:900;line-height:1.2;margin-bottom:0.6rem;color:var(--white)">
         New Reports Every Week
       </h2>
@@ -153,7 +150,7 @@
         in the message field — tell us your country and what you would like us to research.
         Most commission requests are fulfilled within two weeks.
       </p>
-      <a href="#newsletter" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'});return false"
+      <a href="newsletter.html"
         style="display:inline-block;background:var(--gold);color:var(--navy);
         font-family:'Nunito',sans-serif;font-weight:800;font-size:0.95rem;
         padding:0.75rem 2rem;border-radius:50px;text-decoration:none">
@@ -163,6 +160,86 @@
   </div>
 </section>
 
+
+<!-- NEWSLETTER -->
+<div class="newsletter-wrap" id="newsletter">
+<div class="newsletter-inner">
+  <div>
+    <span class="newsletter-tag">Subscribe</span>
+    <h2 class="newsletter-title">Stay informed. Stay ahead.</h2>
+    <p class="newsletter-sub" style="margin-top:0.8rem">Weekly tech intelligence delivered to your inbox. No hype, no affiliate links — just honest analysis.</p>
+  </div>
+  <div>
+    <!-- CUSTOM HUBSPOT API FORM -->
+    <h3 style="font-family:'Nunito',sans-serif;font-size:1.5rem;font-weight:900;color:var(--white);margin-bottom:0.5rem">Get the Newsletter</h3>
+    <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:0.8rem 1.2rem;margin-bottom:1rem;display:flex;align-items:center;gap:10px">
+      <span style="font-size:1.4rem">📬</span>
+      <p style="font-size:0.9rem;color:rgba(255,255,255,0.8);font-weight:600;margin:0">Weekly blog updates and tech intelligence — free to your inbox.</p>
+    </div>
+    <p style="font-size:0.92rem;color:rgba(255,255,255,0.75);margin-bottom:1.5rem;font-weight:400">One honest tech briefing every week. No spam, no affiliate links, no hype.</p>
+    <div id="hs-custom-form">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <input type="text" id="hs-firstname" placeholder="First name"
+          style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:0.85rem 1.4rem;font-family:'Nunito',sans-serif;font-size:0.95rem;color:#ffffff;outline:none;width:100%;font-weight:500;transition:border-color 0.2s"
+          onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'"/>
+        <input type="email" id="hs-email" placeholder="Email address"
+          style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:0.85rem 1.4rem;font-family:'Nunito',sans-serif;font-size:0.95rem;color:#ffffff;outline:none;width:100%;font-weight:500;transition:border-color 0.2s"
+          onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='rgba(255,255,255,0.2)'"/>
+        <select id="hs-interest"
+          style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:0.85rem 1.4rem;font-family:'Nunito',sans-serif;font-size:0.95rem;color:#ffffff;outline:none;width:100%;font-weight:500;cursor:pointer;appearance:none;-webkit-appearance:none">
+          <option value="" style="background:#17294b">What tech are you most interested in?</option>
+          <option value="Smartphones" style="background:#17294b">Smartphones</option>
+          <option value="Laptops &amp; Desktops" style="background:#17294b">Laptops &amp; Desktops</option>
+          <option value="Smart Home &amp; Appliances" style="background:#17294b">Smart Home &amp; Appliances</option>
+          <option value="Audio &amp; Wearables" style="background:#17294b">Audio &amp; Wearables</option>
+          <option value="Cameras &amp; Monitors" style="background:#17294b">Cameras &amp; Monitors</option>
+          <option value="Accessories &amp; Peripherals" style="background:#17294b">Accessories &amp; Peripherals</option>
+          <option value="All Topics" style="background:#17294b">All Topics</option>
+        </select>
+        <textarea id="hs-commission"
+          placeholder="Commission a report (optional) — tell us your country, product, or topic and we'll build it for you"
+          rows="2"
+          style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);
+            border-radius:16px;padding:0.85rem 1.4rem;font-family:'Nunito',sans-serif;
+            font-size:0.92rem;color:#ffffff;outline:none;width:100%;font-weight:500;
+            resize:none;transition:border-color 0.2s"
+          onfocus="this.style.borderColor='var(--gold)'"
+          onblur="this.style.borderColor='rgba(255,255,255,0.2)'"></textarea>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:0.5rem 0">
+          <input type="checkbox" id="hs-consent"
+            style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);cursor:pointer"/>
+          <span style="font-size:0.82rem;color:rgba(255,255,255,0.80);line-height:1.6;font-family:'Nunito',sans-serif;font-weight:500">
+            I agree to receive the weekly SpeckyTec newsletter and occasional updates. I understand I can unsubscribe at any time.
+            View our <a href="/privacy.html" style="color:var(--gold);font-weight:700;text-decoration:underline">Privacy Policy</a>.
+          </span>
+        </label>
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer;padding:0.2rem 0">
+          <input type="checkbox" id="hs-data-consent"
+            style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);cursor:pointer"/>
+          <span style="font-size:0.82rem;color:rgba(255,255,255,0.80);line-height:1.6;font-family:'Nunito',sans-serif;font-weight:500">
+            I agree to allow SpeckyTec to store and process my personal data as described in the Privacy Policy.
+          </span>
+        </label>
+        <p id="hs-error" style="display:none;color:#ff8a80;font-size:0.85rem;font-family:'Nunito',sans-serif;padding:0 0.5rem"></p>
+        <button onclick="submitHubSpot()"
+          style="background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;font-weight:800;padding:0.9rem 2rem;border-radius:50px;font-size:1rem;border:none;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 18px rgba(234,168,69,0.35);width:100%"
+          onmouseover="this.style.background='var(--gold2)'" onmouseout="this.style.background='var(--gold)'">
+          Get the Newsletter &#8594;
+        </button>
+        <p style="font-size:0.78rem;color:rgba(255,255,255,0.45);font-family:'Nunito',sans-serif;text-align:center;font-weight:500">No spam &middot; Unsubscribe any time</p>
+      </div>
+    </div>
+    <div id="hs-success" style="display:none;padding:2rem;border:2px solid var(--gold);border-radius:20px;text-align:center">
+      <div style="font-size:2.5rem;margin-bottom:0.5rem">&#127881;</div>
+      <p style="font-size:1.2rem;font-weight:900;color:var(--gold);margin-bottom:0.5rem;font-family:'Nunito',sans-serif">You're in! &#127775;</p>
+      <p style="font-size:0.95rem;color:rgba(255,255,255,0.75);font-family:'Nunito',sans-serif;line-height:1.6">Welcome to SpeckyTec. You'll receive our weekly newsletter with the latest honest tech intelligence.<br/><br/>
+      <strong style="color:var(--gold);font-size:1rem">A Word to the Wise</strong><br/>
+      The average reader saves far more than the cost of a subscription on their very first purchase decision. One good report is all it takes.</p>
+    </div>
+    <script src="script.js"></script>
+  </div>
+</div>
+</div>
 
 <!-- LIBRARY HEADER -->
 <div style="width:100%;overflow:hidden;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
@@ -214,7 +291,7 @@
     </div>
   </div>
   <div style="margin-top:2rem;text-align:center">
-    <a href="#pricing" class="btn-primary">Subscribe for Full Access →</a>
+    <a href="#newsletter" class="btn-primary">Subscribe for Full Access →</a>
   </div>
 </div>
 </div>
@@ -237,7 +314,7 @@
         <li>6 topic areas covered</li>
         <li>No credit card needed — ever</li>
       </ul>
-      <a href="newsletter.html" style="display:block;text-align:center;padding:0.85rem;border-radius:50px;font-size:0.95rem;font-weight:800;text-decoration:none;background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;transition:all 0.2s;box-shadow:0 4px 14px rgba(234,168,69,0.3)">Get the Newsletter &#8594;</a>
+      <a href="#newsletter" style="display:block;text-align:center;padding:0.85rem;border-radius:50px;font-size:0.95rem;font-weight:800;text-decoration:none;background:var(--gold);color:var(--navy);font-family:'Nunito',sans-serif;transition:all 0.2s;box-shadow:0 4px 14px rgba(234,168,69,0.3)" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'});return false">Get the Newsletter &#8594;</a>
       <p style="font-size:0.75rem;color:rgba(255,255,255,0.4);text-align:center;margin-top:0.8rem;font-weight:500">No credit card · No payment required</p>
     </div>
     <div class="plan plan-featured">
