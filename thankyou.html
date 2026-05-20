@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>You're In — SpeckyTec</title>
+<meta name="robots" content="noindex"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link rel="icon" href="favicon.ico"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #17294B;
+    --navy2:  #1a3a6b;
+    --teal:   #0e6b5e;
+    --gold:   #EAA845;
+    --gold2:  #f5c87a;
+    --white:  #ffffff;
+    --muted:  rgba(255,255,255,0.65);
+    --faint:  rgba(255,255,255,0.35);
+  }
+
+  html, body {
+    min-height: 100vh;
+    font-family: 'Nunito', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  /* NAV */
+  nav {
+    padding: 0 5%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .nav-brand img { height: 32px; }
+  .nav-wordmark {
+    font-size: 1.2rem; font-weight: 900; color: var(--white); letter-spacing: -0.3px;
+  }
+  .nav-wordmark span { color: var(--gold); }
+  .nav-link {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 600;
+    transition: color .2s;
+  }
+  .nav-link:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 5% 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Background glow */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(14,107,94,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Checkmark circle */
+  .check-wrap {
+    width: 80px; height: 80px;
+    background: rgba(14,107,94,0.2);
+    border: 2px solid rgba(14,107,94,0.6);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275) both;
+  }
+  .check-wrap svg {
+    width: 38px; height: 38px;
+    stroke: #4ade80;
+    stroke-width: 3;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  @keyframes popIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+  }
+
+  .tag {
+    display: inline-block;
+    background: rgba(234,168,69,0.15);
+    border: 1px solid rgba(234,168,69,0.35);
+    color: var(--gold);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1.2rem;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.5s 0.1s both;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    animation: fadeUp 0.5s 0.2s both;
+  }
+
+  @keyframes fadeUp {
+    from { transform: translateY(16px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+  }
+
+  /* WHAT'S NEXT CARDS */
+  .next-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    max-width: 760px;
+    width: 100%;
+    margin: 0 auto 2.5rem;
+    animation: fadeUp 0.5s 0.3s both;
+  }
+
+  .next-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 1.4rem 1.2rem;
+    text-align: left;
+  }
+
+  .next-card .icon {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .next-card h3 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .next-card p {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* UPGRADE BOX */
+  .upgrade-box {
+    background: linear-gradient(135deg, rgba(234,168,69,0.1) 0%, rgba(14,107,94,0.1) 100%);
+    border: 1px solid rgba(234,168,69,0.3);
+    border-radius: 20px;
+    padding: 2rem 2.4rem;
+    max-width: 580px;
+    width: 100%;
+    margin: 0 auto 2rem;
+    animation: fadeUp 0.5s 0.4s both;
+  }
+
+  .upgrade-box .upgrade-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .upgrade-box h2 {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .upgrade-box p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+
+  .upgrade-features {
+    list-style: none;
+    margin-bottom: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .upgrade-features li {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .upgrade-features li::before {
+    content: '✓';
+    color: #4ade80;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .btn-upgrade {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(234,168,69,0.35);
+    transition: all 0.2s;
+    width: 100%;
+    text-align: center;
+    display: block;
+  }
+  .btn-upgrade:hover {
+    background: var(--gold2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(234,168,69,0.45);
+  }
+
+  .stripe-note {
+    font-size: 0.75rem;
+    color: var(--faint);
+    text-align: center;
+    margin-top: 0.7rem;
+  }
+
+  /* FOOTER LINKS */
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    animation: fadeUp 0.5s 0.5s both;
+  }
+
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-links span { color: var(--faint); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 5%;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--faint);
+  }
+  footer a { color: var(--faint); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .next-grid { grid-template-columns: 1fr; }
+    .upgrade-box { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">
+    <img src="images/image_1.png" alt="SpeckyTec" onerror="this.style.display='none'"/>
+    <span class="nav-wordmark">Specky<span>Tec</span></span>
+  </a>
+  <a href="index.html" class="nav-link">← Back to site</a>
+</nav>
+
+<section class="hero">
+
+  <div class="check-wrap">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+
+  <div class="tag">Weekly Tech Intelligence</div>
+
+  <h1>You're in. Welcome to SpeckyTec.</h1>
+
+  <p class="subtitle">
+    Every week we publish a new buying intelligence report — the kind that tells you what things actually cost over five years, not just the sticker price. Your first one lands in your inbox soon.
+  </p>
+
+  <!-- WHAT'S NEXT -->
+  <div class="next-grid">
+    <div class="next-card">
+      <span class="icon">📬</span>
+      <h3>Weekly reports</h3>
+      <p>One honest tech briefing every week. No affiliate links, no hype, no manufacturer influence.</p>
+    </div>
+    <div class="next-card">
+      <span class="icon">🔍</span>
+      <h3>Real-world numbers</h3>
+      <p>We calculate depreciation, running costs, and the bits most reviews never mention.</p>
+    </div>
+    <div class="next-card">
+      <span class="icon">✏️</span>
+      <h3>Commission a report</h3>
+      <p>Reply to any newsletter email with your product or topic request — we prioritise the most requested.</p>
+    </div>
+  </div>
+
+  <!-- UPGRADE PROMPT -->
+  <div class="upgrade-box">
+    <div class="upgrade-label">📊 Full Library Access</div>
+    <h2>Want all 13+ reports right now?</h2>
+    <p>Subscriber plans start at $9.99/month — cancel any time. One good report typically saves more than a year's subscription.</p>
+    <ul class="upgrade-features">
+      <li>Instant access to the full report library</li>
+      <li>New report delivered every week</li>
+      <li>Smartphones, EVs, appliances, audio &amp; more</li>
+      <li>Cancel any time from your Stripe dashboard</li>
+    </ul>
+    <a href="https://buy.stripe.com/bJefZgexd6Rn4jY2h24Rq00" class="btn-upgrade" target="_blank">
+      Get Full Access — $9.99/month →
+    </a>
+    <p class="stripe-note">🔒 Secure payment via Stripe · Cancel anytime</p>
+  </div>
+
+  <!-- NAV LINKS -->
+  <div class="footer-links">
+    <a href="blog.html">Browse free reports</a>
+    <span>·</span>
+    <a href="index.html#pricing">See all plans</a>
+    <span>·</span>
+    <a href="index.html">Home</a>
+  </div>
+
+</section>
+
+<footer>
+  &copy; 2026 SpeckyTec · Weekly Tech Intelligence ·
+  <a href="privacy.html">Privacy Policy</a> ·
+  <a href="mailto:hello@speckytec.com">hello@speckytec.com</a>
+</footer>
+
+</body>
+</html>
