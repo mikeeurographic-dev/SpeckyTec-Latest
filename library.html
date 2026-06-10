@@ -438,24 +438,23 @@
     <div class="gate-icon">🔐</div>
     <h1>Subscriber Library</h1>
     <p>
-      Enter the email address you subscribed with to access your full report library.
+      Enter your subscriber access password to access your full report library.
       Not a subscriber yet? <a href="/#subscribe">Join here</a>.
     </p>
     <div class="input-group">
       <input
-        type="email"
-        id="email-input"
-        placeholder="Your subscriber email address"
-        autocomplete="email"
-        inputmode="email"
+        type="password"
+        id="password-input"
+        placeholder="Enter your subscriber password"
+        autocomplete="current-password"
       />
     </div>
-    <button class="btn-primary" id="verify-btn" onclick="verifyEmail()">
+    <button class="btn-primary" id="verify-btn" onclick="verifyPassword()">
       Access My Library →
     </button>
     <div id="gate-message"></div>
     <div class="gate-footer">
-      Problems accessing your account? <a href="mailto:hello@speckytec.com">Contact support</a>
+      Password sent to you by email after subscribing. Problems? <a href="mailto:hello@speckytec.com">Contact support</a>
     </div>
   </div>
 </section>
@@ -469,7 +468,7 @@
         <p>All reports available as downloadable PDFs. New reports added every week.</p>
       </div>
       <div class="subscriber-badge">
-        ✓ <span>SUBSCRIBER ACCESS</span> — <span id="verified-email-display"></span>
+        ✓ <span>SUBSCRIBER ACCESS</span>
       </div>
     </div>
   </div>
@@ -491,7 +490,7 @@
 
   <!-- LOGOUT BAR -->
   <div class="logout-bar">
-    <span>Logged in as <strong id="logout-email-display"></strong></span>
+    <span>Subscriber Access Active</span>
     <button class="logout-btn" onclick="logout()">Sign out</button>
   </div>
 </section>
@@ -677,70 +676,57 @@
   //  with real values via a serverless proxy (Netlify/Cloudflare Worker)
   //  to avoid exposing your token client-side.
   //
-  //  The endpoint below should be a thin proxy you control:
-  //  POST /api/verify-subscriber  { "email": "..." }
-  //  → { "isSubscriber": true/false }
-  // ─────────────────────────────────────────────
-  const VERIFY_ENDPOINT = 'https://speckytec-verify.mike-eurographic.workers.dev';
+  // ── Password verification ──
+  // Password is hashed — not stored in plain text in source code
+  const CORRECT_HASH = '8c190fd7f27f10ddbdc2f9738996d39842f2d9ad89804a0c2b483b4ae61905f3';
 
-  let currentEmail = '';
-  let activeFilter  = 'all';
+  let activeFilter = 'all';
+
+  async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password + 'speckytec_salt_2026');
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
 
   // ── Check session on load ──
   window.addEventListener('DOMContentLoaded', () => {
-    const saved = sessionStorage.getItem('st_verified_email');
-    if (saved) {
-      showLibrary(saved);
+    const saved = sessionStorage.getItem('st_verified');
+    if (saved === 'true') {
+      showLibrary();
     }
-
-    document.getElementById('email-input').addEventListener('keypress', e => {
-      if (e.key === 'Enter') verifyEmail();
+    document.getElementById('password-input').addEventListener('keypress', e => {
+      if (e.key === 'Enter') verifyPassword();
     });
   });
 
-  // ── Verify via HubSpot proxy ──
-  async function verifyEmail() {
-    const emailEl  = document.getElementById('email-input');
-    const msgEl    = document.getElementById('gate-message');
-    const btnEl    = document.getElementById('verify-btn');
-    const email    = emailEl.value.trim().toLowerCase();
+  // ── Verify password ──
+  async function verifyPassword() {
+    const passEl = document.getElementById('password-input');
+    const msgEl  = document.getElementById('gate-message');
+    const btnEl  = document.getElementById('verify-btn');
+    const pass   = passEl.value.trim();
 
-    // Basic format check
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showMsg(msgEl, 'Please enter a valid email address.', 'error');
+    if (!pass) {
+      showMsg(msgEl, 'Please enter your subscriber password.', 'error');
       return;
     }
 
-    btnEl.disabled  = true;
+    btnEl.disabled = true;
     btnEl.textContent = 'Checking…';
     showMsg(msgEl, '', '');
 
-    try {
-      const res  = await fetch(VERIFY_ENDPOINT, {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ email })
-      });
+    const hash = await hashPassword(pass);
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const data = await res.json();
-
-      if (data.isSubscriber === true) {
-        sessionStorage.setItem('st_verified_email', email);
-        showLibrary(email);
-      } else {
-        showMsg(msgEl,
-          'We couldn\'t find a subscription for that email. Check your address or <a href="/#subscribe">subscribe here</a>.',
-          'error');
-        btnEl.disabled  = false;
-        btnEl.textContent = 'Access My Library →';
-      }
-    } catch (err) {
-      console.error('Verify error:', err);
+    if (hash === CORRECT_HASH) {
+      sessionStorage.setItem('st_verified', 'true');
+      showLibrary();
+    } else {
       showMsg(msgEl,
-        'Verification service unavailable. Please try again or <a href="mailto:hello@speckytec.com">contact support</a>.',
-        'info');
-      btnEl.disabled  = false;
+        'Incorrect password. Check your subscriber welcome email or <a href="mailto:hello@speckytec.com">contact support</a>.',
+        'error');
+      btnEl.disabled = false;
       btnEl.textContent = 'Access My Library →';
     }
   }
@@ -751,12 +737,9 @@
   }
 
   // ── Show library ──
-  function showLibrary(email) {
-    currentEmail = email;
+  function showLibrary() {
     document.getElementById('gate-section').style.display   = 'none';
     document.getElementById('library-section').style.display = 'block';
-    document.getElementById('verified-email-display').textContent = email;
-    document.getElementById('logout-email-display').textContent   = email;
     renderReports('all');
   }
 
@@ -803,11 +786,10 @@
 
   // ── Logout ──
   function logout() {
-    sessionStorage.removeItem('st_verified_email');
-    currentEmail = '';
+    sessionStorage.removeItem('st_verified');
     document.getElementById('library-section').style.display = 'none';
     document.getElementById('gate-section').style.display    = 'flex';
-    document.getElementById('email-input').value             = '';
+    document.getElementById('password-input').value          = '';
     document.getElementById('gate-message').innerHTML        = '';
     document.getElementById('gate-message').className        = '';
     document.getElementById('verify-btn').disabled           = false;
