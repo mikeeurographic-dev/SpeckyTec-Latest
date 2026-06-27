@@ -441,13 +441,15 @@
       Enter your subscriber access password to access your full report library.
       Not a subscriber yet? <a href="/#subscribe">Join here</a>.
     </p>
-    <div class="input-group">
+    <div class="input-group" style="position:relative;">
       <input
         type="password"
         id="password-input"
         placeholder="Enter your subscriber password"
         autocomplete="current-password"
+        style="padding-right:3rem;"
       />
+      <button type="button" onclick="togglePasswordVisibility()" id="toggle-pw-btn" style="position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1.1rem;color:#666;" title="Show/hide password">👁</button>
     </div>
     <button class="btn-primary" id="verify-btn" onclick="verifyPassword()">
       Access My Library →
@@ -677,8 +679,32 @@
   //  to avoid exposing your token client-side.
   //
   // ── Password verification ──
+  function togglePasswordVisibility() {
+    const input = document.getElementById('password-input');
+    const btn = document.getElementById('toggle-pw-btn');
+    if (input.type === 'password') {
+      input.type = 'text';
+      btn.textContent = '🙈';
+    } else {
+      input.type = 'password';
+      btn.textContent = '👁';
+    }
+  }
+
+  function togglePasswordVisibility() {
+    const input = document.getElementById('password-input');
+    const btn = document.getElementById('toggle-pw-btn');
+    if (input.type === 'password') {
+      input.type = 'text';
+      btn.textContent = '🙈';
+    } else {
+      input.type = 'password';
+      btn.textContent = '👁';
+    }
+  }
+
   // Password is hashed — not stored in plain text in source code
-  const CORRECT_HASH = '8c190fd7f27f10ddbdc2f9738996d39842f2d9ad89804a0c2b483b4ae61905f3';
+  const CORRECT_HASH = 'bfad07f98ce1887f3ba9eb417b2ab2be28b15a7718c107f5761f2bbee9a862ad';
 
   let activeFilter = 'all';
 
