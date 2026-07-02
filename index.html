@@ -34,7 +34,7 @@
       <div class="hero-stats">
         <div><div class="stat-num">100%</div><div class="stat-label">Independent</div></div>
         <div><div class="stat-num">$9.99</div><div class="stat-label">Per Month</div></div>
-        <div><div class="stat-num" id="savings-counter">$38,531</div><div class="stat-label">Max Saving Per Reader*</div></div>
+        <div><div class="stat-num" id="savings-counter">$44,281</div><div class="stat-label">Max Saving Per Reader*</div></div>
       </div>
     </div>
     <div class="hero-image-wrap">
@@ -74,7 +74,7 @@
   <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
     <div>
       <div style="font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.3rem">SpeckyTec Reader Savings</div>
-      <div style="font-family:'Nunito',sans-serif;font-size:1.6rem;font-weight:900;color:var(--gold)">Total saving so far up to <span style="font-size:2rem">£33,355 / $38,531 / €41,850</span></div>
+      <div style="font-family:'Nunito',sans-serif;font-size:1.6rem;font-weight:900;color:var(--gold)">Total saving so far up to <span style="font-size:2rem">£37,905 / $44,281 / €47,000</span></div>
       <div style="font-size:0.9rem;color:rgba(255,255,255,0.75);margin-top:0.3rem">£750/$980/€853 on smartphones · £110/$144/€125 on smartwatches · £20,474/$22,969/€27,117 on cars — based on verified April 2026 data</div>
     </div>
     <a href="library.html" class="nav-cta" style="display:inline-block;text-decoration:none;white-space:nowrap">Access Reports &#8594;</a>
@@ -92,6 +92,7 @@
       <p style="font-family:'Nunito',sans-serif;font-size:1rem;color:rgba(255,255,255,0.72);max-width:600px;margin:0 auto;line-height:1.7">Every wrong purchase costs you something more valuable than money — it costs you time you worked hard to earn. Enter your salary below and see exactly how many hours of your working life the right research could give back to you.</p>
     </div>
 
+    <div id="st-spotlight-banner" style="display:none;background:rgba(234,168,69,0.12);border:1px solid rgba(234,168,69,0.4);border-radius:12px;padding:0.85rem 1.1rem;margin-bottom:1rem;font-family:'Nunito',sans-serif;font-size:0.92rem;color:var(--white);text-align:center"></div>
     <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:1.75rem 2rem;margin-bottom:1.5rem">
       <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap">
         <div style="min-width:110px">
@@ -167,6 +168,34 @@
     ]
   };
 
+  var spotlight={
+    'ev-battery-ioniq5-module-repair':{
+      USD:{name:'IONIQ 5 Battery Repair',desc:'Report 014 — realistic module-level repair cost',saving:5500},
+      GBP:{name:'IONIQ 5 Battery Repair',desc:'Report 014 — realistic module-level repair cost',saving:4350},
+      EUR:{name:'IONIQ 5 Battery Repair',desc:'Report 014 — realistic module-level repair cost',saving:5100}
+    },
+    'ev-battery-tesla-full-pack':{
+      USD:{name:'Tesla Model 3 Full Pack',desc:'Report 014 — full OEM pack, worst case',saving:11250},
+      GBP:{name:'Tesla Model 3 Full Pack',desc:'Report 014 — full OEM pack, worst case',saving:8900},
+      EUR:{name:'Tesla Model 3 Full Pack',desc:'Report 014 — full OEM pack, worst case',saving:10250}
+    }
+  };
+
+  function getURLProduct(){
+    var params=new URLSearchParams(window.location.search);
+    return params.get('product');
+  }
+
+  function showSpotlightBanner(){
+    var slug=getURLProduct();
+    if(!slug||!spotlight[slug])return;
+    var entry=spotlight[slug].USD;
+    var el=document.getElementById('st-spotlight-banner');
+    if(!el)return;
+    el.textContent='You clicked through from a SpeckyTec report — enter your salary below to see what "'+entry.name+'" really costs in your working hours.';
+    el.style.display='block';
+  }
+
   window.stCalc=function(){
     var salary=parseFloat(document.getElementById('st-sal').value);
     var currency=document.getElementById('st-cur').value;
@@ -175,15 +204,20 @@
     errEl.style.display='none';
     var s=sym[currency];
     var hourly=salary/52/40;
-    var ps=prods[currency];
+    var ps=prods[currency].slice();
+    var slug=getURLProduct();
+    if(slug&&spotlight[slug]&&spotlight[slug][currency]){
+      var sp=spotlight[slug][currency];
+      ps=[{name:sp.name,desc:sp.desc,saving:sp.saving,spotlight:true}].concat(ps);
+    }
     var totalHrs=0;
     var html='';
     ps.forEach(function(p){
       var hrs=p.saving/hourly;
       totalHrs+=hrs;
-      var cardBg=p.car?'background:rgba(14,107,94,0.3);border:1px solid rgba(14,107,94,0.6)':'background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)';
-      var nameCol=p.car?'color:#4dd4b8':'color:rgba(255,255,255,0.55)';
-      var hrsCol=p.car?'color:#4dd4b8':'color:var(--white)';
+      var cardBg=p.spotlight?'background:rgba(234,168,69,0.18);border:1px solid rgba(234,168,69,0.55)':(p.car?'background:rgba(14,107,94,0.3);border:1px solid rgba(14,107,94,0.6)':'background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1)');
+      var nameCol=p.spotlight?'color:var(--gold)':(p.car?'color:#4dd4b8':'color:rgba(255,255,255,0.55)');
+      var hrsCol=p.spotlight?'color:var(--gold)':(p.car?'color:#4dd4b8':'color:var(--white)');
       html+='<div style="'+cardBg+';border-radius:12px;padding:0.9rem 1rem">'
         +'<div style="font-family:\'Nunito\',sans-serif;font-size:0.78rem;font-weight:700;'+nameCol+';text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.2rem">'+p.name+'</div>'
         +'<div style="font-family:\'Nunito\',sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.5);margin-bottom:0.4rem">'+p.desc+'</div>'
@@ -194,7 +228,8 @@
     document.getElementById('st-grid').innerHTML=html;
     document.getElementById('st-total').textContent=Math.round(totalHrs)+' hours';
     var subMins=Math.round(sub[currency]/(hourly/60));
-    var carHrs=Math.round(ps[5].saving/hourly);
+    var carIdx=ps.findIndex(function(p){return p.car;});
+    var carHrs=Math.round(ps[carIdx].saving/hourly);
     document.getElementById('st-punchline').innerHTML='On your salary, avoiding just the car decision alone saves you <strong>'+carHrs+' hours</strong> of working time. A SpeckyTec subscription costs you just <strong>'+subMins+' minutes a month</strong> — less than a coffee break. The research pays for itself the moment it steers you away from a single wrong choice.';
     document.getElementById('st-results').style.display='block';
   };
@@ -203,6 +238,7 @@
     if(navigator.share){navigator.share({title:'SpeckyTec — What are wrong purchases really costing you?',text:'Find out how many hours of your working life a bad purchase costs you.',url:'https://speckytec.com'});}
     else if(navigator.clipboard){navigator.clipboard.writeText('https://speckytec.com').then(function(){alert('Link copied to clipboard!');});}
   };
+  document.addEventListener('DOMContentLoaded',showSpotlightBanner);
 })();
 </script>
 
