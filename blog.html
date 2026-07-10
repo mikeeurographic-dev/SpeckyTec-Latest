@@ -70,15 +70,14 @@ body{padding-top:70px}
 .locked-text strong{color:var(--white);font-weight:800}
 .btn-locked{background:var(--gold);color:var(--navy);padding:0.65rem 1.5rem;border-radius:50px;font-size:0.88rem;font-weight:800;text-decoration:none;white-space:nowrap;transition:all 0.2s;box-shadow:0 4px 14px rgba(234,168,69,0.3)}
 .btn-locked:hover{background:var(--gold2);transform:translateY(-1px)}
-.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.article-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;overflow:hidden;transition:all 0.2s;text-decoration:none;display:block;color:inherit;backdrop-filter:blur(4px)}
-.article-card:hover{border-color:rgba(234,168,69,0.4);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.25)}
-.article-img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
-.article-body{padding:1.4rem}
-.article-cat{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;display:flex;align-items:center;gap:6px}
+.articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.article-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:14px;overflow:hidden;transition:all 0.2s;text-decoration:none;display:block;color:inherit;backdrop-filter:blur(4px)}
+.article-card:hover{border-color:rgba(234,168,69,0.4);transform:translateY(-2px);box-shadow:0 8px 26px rgba(0,0,0,0.22)}
+.article-body{padding:1.1rem 1.25rem}
+.article-cat{font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;display:flex;align-items:center;gap:6px}
 .lock-icon{font-size:0.7rem;background:rgba(234,168,69,0.15);padding:2px 8px;border-radius:50px;color:var(--gold)}
-.article-title{font-size:1rem;font-weight:800;line-height:1.4;margin-bottom:0.5rem;color:var(--white)}
-.article-desc{font-size:0.88rem;color:var(--muted);line-height:1.6;margin-bottom:1rem;font-weight:400}
+.article-title{font-size:1rem;font-weight:800;line-height:1.3;margin-bottom:0.35rem;color:var(--white)}
+.article-desc{font-size:0.86rem;color:var(--muted);line-height:1.5;margin-bottom:0.8rem;font-weight:400;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .article-meta{font-size:0.75rem;color:rgba(255,255,255,0.3);display:flex;justify-content:space-between;align-items:center;font-weight:600}
 .free-tag{background:rgba(94,207,46,0.15);color:#7edf52;font-size:0.7rem;padding:2px 10px;border-radius:50px;font-weight:700}
 .members-tag{background:rgba(234,168,69,0.15);color:var(--gold);font-size:0.7rem;padding:2px 10px;border-radius:50px;font-weight:700}
@@ -86,8 +85,7 @@ body{padding-top:70px}
 .cta-strip h3{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;margin-bottom:0.8rem}
 .cta-strip p{font-size:1rem;color:var(--muted);max-width:480px;margin:0 auto 1.8rem;line-height:1.7;font-weight:400}
 .cta-actions{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap}
-@media(max-width:860px){.articles-grid{grid-template-columns:1fr}.locked-banner{flex-direction:column;align-items:flex-start}}
-.article-icon{width:100%;aspect-ratio:21/9;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);background:linear-gradient(135deg,rgba(234,168,69,0.15),rgba(14,107,94,0.15))}</style>
+@media(max-width:860px){.articles-grid{grid-template-columns:1fr}.locked-banner{flex-direction:column;align-items:flex-start}}</style>
 </head>
 <body>
 <nav>
@@ -109,7 +107,6 @@ body{padding-top:70px}
   </div>
   <div class="articles-grid">
   <a href="library.html" class="article-card">
-    <div class="article-icon">Phone</div>
     <div class="article-body">
       <div class="article-cat">Smartphones</div>
       <p class="article-title">Best Smartphones 2026</p>
@@ -118,7 +115,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Laptop</div>
     <div class="article-body">
       <div class="article-cat">Laptops &amp; Desktops</div>
       <p class="article-title">Best Laptops for Remote Work 2026</p>
@@ -127,7 +123,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Home</div>
     <div class="article-body">
       <div class="article-cat">Smart Home &amp; Appliances</div>
       <p class="article-title">Air Fryer vs Oven 2026</p>
@@ -136,7 +131,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Home</div>
     <div class="article-body">
       <div class="article-cat">Smart Home &amp; Appliances</div>
       <p class="article-title">Best Robot Vacuums 2026</p>
@@ -145,7 +139,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Car</div>
     <div class="article-body">
       <div class="article-cat">Transport &amp; Automotive <span class="lock-icon">Locked - Members</span></div>
       <p class="article-title">Car Ownership vs Uber: The Real Cost</p>
@@ -154,7 +147,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Home</div>
     <div class="article-body">
       <div class="article-cat">Smart Home &amp; Appliances</div>
       <p class="article-title">Best Washing Machines 2026</p>
@@ -163,7 +155,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Watch</div>
     <div class="article-body">
       <div class="article-cat">Audio &amp; Wearables <span class="lock-icon">Locked - Members</span></div>
       <p class="article-title">Best Smartwatches 2026</p>
@@ -172,7 +163,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Car</div>
     <div class="article-body">
       <div class="article-cat">Transport &amp; Automotive <span class="lock-icon">Locked - Members</span></div>
       <p class="article-title">Electric vs Petrol vs Hybrid 2026</p>
@@ -181,7 +171,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Ear</div>
     <div class="article-body">
       <div class="article-cat">Audio &amp; Wearables <span class="lock-icon">Locked - Members</span></div>
       <p class="article-title">Could a $249 Earbud Replace Your $5,000 Hearing Aid?</p>
@@ -190,7 +179,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Ear</div>
     <div class="article-body">
       <div class="article-cat">Audio &amp; Wearables <span class="lock-icon">Locked - Members</span></div>
       <p class="article-title">Best Wireless Earbuds 2026</p>
@@ -199,7 +187,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Car</div>
     <div class="article-body">
       <div class="article-cat">Transport &amp; Automotive <span class="lock-icon">Locked - Members</span></div>
       <p class="article-title">EV Battery Replacement Costs</p>
@@ -208,7 +195,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Car</div>
     <div class="article-body">
       <div class="article-cat">Transport &amp; Automotive <span class="lock-icon">Locked - Members</span></div>
       <p class="article-title">Cars That Depreciate Unfairly</p>
@@ -217,7 +203,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">Printer</div>
     <div class="article-body">
       <div class="article-cat">Accessories &amp; Peripherals <span class="lock-icon">Locked - Members</span></div>
       <p class="article-title">Best Printers for Home Office 2026</p>
@@ -226,7 +211,6 @@ body{padding-top:70px}
     </div>
   </a>
   <a href="library.html" class="article-card">
-    <div class="article-icon">TV</div>
     <div class="article-body">
       <div class="article-cat">Entertainment &amp; Streaming</div>
       <p class="article-title">The £1,000 TV Habit</p>
