@@ -432,6 +432,24 @@
   </div>
 </nav>
 
+<!-- ── FREE REPORTS (always accessible, no password required) ── -->
+<section id="free-section">
+  <div class="library-header">
+    <div class="library-header-inner">
+      <div>
+        <h1>Free Reports</h1>
+        <p>No subscription needed — download these anytime.</p>
+      </div>
+      <div class="subscriber-badge" style="background:rgba(59,130,246,.1);border-color:rgba(59,130,246,.25);color:var(--accent-light)">
+        ✓ <span>FREE — NO PASSWORD</span>
+      </div>
+    </div>
+  </div>
+  <div class="reports-grid" id="free-reports-grid">
+    <!-- Injected by JS -->
+  </div>
+</section>
+
 <!-- ── GATE ── -->
 <section id="gate-section">
   <div class="gate-card">
@@ -655,7 +673,7 @@
       tagClass: 'tag-tech',
       emoji: '📺',
       date: 'Jun 2026',
-      free: false,
+      free: true,
       file: 'https://drive.google.com/uc?export=download&id=1QXW1UpIy96VujkOEv4wmdtH2X06bQCWq'
     },
   ];
@@ -706,6 +724,8 @@
 
   // ── Check session on load ──
   window.addEventListener('DOMContentLoaded', () => {
+    renderFreeReports();
+
     const saved = sessionStorage.getItem('st_verified');
     if (saved === 'true') {
       showLibrary();
@@ -753,23 +773,14 @@
   // ── Show library ──
   function showLibrary() {
     document.getElementById('gate-section').style.display   = 'none';
+    document.getElementById('free-section').style.display   = 'none';
     document.getElementById('library-section').style.display = 'block';
     renderReports('all');
   }
 
-  // ── Render reports ──
-  function renderReports(filter) {
-    const grid   = document.getElementById('reports-grid');
-    const subset = filter === 'all'
-      ? REPORTS
-      : REPORTS.filter(r => r.category === filter);
-
-    if (subset.length === 0) {
-      grid.innerHTML = `<div class="empty-state"><strong>No reports in this category yet.</strong><p>New reports are added weekly — check back soon.</p></div>`;
-      return;
-    }
-
-    grid.innerHTML = subset.map(r => `
+  // ── Card template (shared by the free section and the gated grid) ──
+  function reportCardHTML(r) {
+    return `
       <div class="report-card" data-category="${r.category}">
         <div class="card-thumb">${r.emoji}</div>
         <div class="card-body">
@@ -787,7 +798,28 @@
           </div>
         </div>
       </div>
-    `).join('');
+    `;
+  }
+
+  // ── Render free reports (no password required) ──
+  function renderFreeReports() {
+    const grid = document.getElementById('free-reports-grid');
+    grid.innerHTML = REPORTS.filter(r => r.free).map(reportCardHTML).join('');
+  }
+
+  // ── Render reports ──
+  function renderReports(filter) {
+    const grid   = document.getElementById('reports-grid');
+    const subset = filter === 'all'
+      ? REPORTS
+      : REPORTS.filter(r => r.category === filter);
+
+    if (subset.length === 0) {
+      grid.innerHTML = `<div class="empty-state"><strong>No reports in this category yet.</strong><p>New reports are added weekly — check back soon.</p></div>`;
+      return;
+    }
+
+    grid.innerHTML = subset.map(reportCardHTML).join('');
   }
 
   // ── Filter ──
@@ -802,6 +834,7 @@
   function logout() {
     sessionStorage.removeItem('st_verified');
     document.getElementById('library-section').style.display = 'none';
+    document.getElementById('free-section').style.display    = 'block';
     document.getElementById('gate-section').style.display    = 'flex';
     document.getElementById('password-input').value          = '';
     document.getElementById('gate-message').innerHTML        = '';
