@@ -27,6 +27,7 @@ Internal links are inconsistent between pages: `index.html` links other pages wi
 ### Report library / paywall (`library.html`)
 
 - Reports are hardcoded as a JS array (`REPORTS`) inside `library.html`, each with `issue`, `title`, `description`, `category`, `tag`/`tagClass`, `emoji`, `date`, `free`, and a `file` URL (Google Drive direct-download links). Adding a report means adding an entry to this array and re-rendering (`renderReports`) — there is no CMS or data file.
+- **`library.html`'s `REPORTS` array is the single source of truth for which reports are free vs. members-only** (the `free: true/false` field on each entry). Other pages (`blog.html`, `index.html`, etc.) that display report cards or free/paid labels must match this array — check it before adding, styling, or "correcting" any free/locked report card elsewhere, and flag any conflict rather than trusting a description of the free list from memory or from another page.
 - Access is gated client-side by a SHA-256 password check (`hashPassword` + `CORRECT_HASH`) against a salted hash of a single shared subscriber password, with the unlocked state kept in `sessionStorage` (`st_verified`). This is a soft gate for convenience, not real per-user auth — the actual report files are just publicly reachable Drive links.
 - `netlify/functions/verify-subscriber.js` is a separate, currently-unused-by-the-frontend Stripe-based verification path (looks up a customer by email via Stripe's API and checks for an active subscription). It expects `STRIPE_RESTRICTED_KEY` and `LIBRARY_SECRET` env vars in Netlify. If wiring up real per-subscriber auth, this function — not the password hash in `library.html` — is the intended integration point.
 
@@ -46,7 +47,7 @@ Internal links are inconsistent between pages: `index.html` links other pages wi
 - All pricing must be tri-currency: USD, GBP, EUR.
 - Costs are converted to "Hours Worked" using a fixed US median wage constant of $60,575/year ($29.03/hour pre-tax).
 - Brand colors: navy `#17294B`, teal `#0e6b5e`, gold `#eaa845`.
-- Six permanently free reports: 001 Smartphones, 002 Laptops, 003 Air Fryer, 004 Robot Vacuums, 007 Washing Machines, 050 TV Habits. All other reports are paid members-only.
+- Six permanently free reports: 001 Smartphones, 002 Laptops, 003 Air Fryer, 004 Robot Vacuums, 007 Washing Machines, 050 TV Habits. All other reports are paid members-only. This list must match `library.html`'s `REPORTS` array (see below) — treat that array as authoritative if the two ever disagree.
 - Last-page CTA on every report always reads: "More reports at www.speckytec.com — smart buying decisions start here."
 - Primary audience is Americans from YouTube; UK and Europe are secondary.
 - `~/Desktop/speckytec-pull.sh` and `~/Desktop/speckytec-update.sh` are built for Michael's Claude.ai (web/desktop) workflow, where pages are generated in chat, downloaded to `~/Downloads`, then `speckytec-update.sh` copies matching files (`index*.html`, `library*.html`, `blog*.html`, `reports*.html`, `privacy*.html`, etc.) out of Downloads into the repo before committing and pushing. It handles only `index.html`, `library.html`, `blog.html`, `reports.html`, `privacy.html` — any new page filename must be added to the script explicitly, so flag this to Michael if a new page is created.
