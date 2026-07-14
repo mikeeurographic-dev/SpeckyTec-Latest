@@ -81,6 +81,15 @@ body{padding-top:70px}
 .article-meta{font-size:0.75rem;color:rgba(255,255,255,0.3);display:flex;justify-content:space-between;align-items:center;font-weight:600}
 .free-tag{background:rgba(94,207,46,0.15);color:#7edf52;font-size:0.7rem;padding:2px 10px;border-radius:50px;font-weight:700}
 .members-tag{background:rgba(234,168,69,0.15);color:var(--gold);font-size:0.7rem;padding:2px 10px;border-radius:50px;font-weight:700}
+.article-body{display:block;color:inherit;text-decoration:none}
+.video-thumb{position:relative;width:100%;aspect-ratio:16/9;background:var(--navy2);cursor:pointer}
+.video-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.3s}
+.article-card:hover .video-thumb img{transform:scale(1.05)}
+.video-thumb .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:54px;height:54px;border-radius:50%;background:rgba(23,41,75,0.78);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;padding:0}
+.video-thumb .play-btn:hover{background:var(--gold);transform:translate(-50%,-50%) scale(1.08)}
+.video-thumb .play-btn svg{width:18px;height:18px;fill:var(--gold);margin-left:3px;transition:fill 0.2s}
+.video-thumb .play-btn:hover svg{fill:var(--navy)}
+.video-thumb iframe{width:100%;height:100%;border:0;display:block}
 .cta-strip{background:rgba(234,168,69,0.07);border:1px solid rgba(234,168,69,0.25);border-radius:20px;padding:3rem 2.5rem;text-align:center;margin-top:4rem}
 .cta-strip h3{font-family:'Nunito',sans-serif;font-size:2rem;font-weight:900;margin-bottom:0.8rem}
 .cta-strip p{font-size:1rem;color:var(--muted);max-width:480px;margin:0 auto 1.8rem;line-height:1.7;font-weight:400}
@@ -106,38 +115,50 @@ body{padding-top:70px}
     <a href="index.html#pricing" class="btn-locked">Subscribe — $9.99/month →</a>
   </div>
   <div class="articles-grid">
-  <a href="library.html" class="article-card">
-    <div class="article-body">
-      <div class="article-cat">Smartphones</div>
+  <div class="article-card">
+    <div class="video-thumb" data-yt="-soqBl3UEIU" data-title="Best Smartphones 2026">
+      <img src="https://img.youtube.com/vi/-soqBl3UEIU/hqdefault.jpg" alt="Best Smartphones 2026 — watch the video" loading="lazy"/>
+      <button type="button" class="play-btn" aria-label="Play video: Best Smartphones 2026" onclick="loadVideo(this)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+    </div>
+    <a href="library.html" class="article-body">
       <p class="article-title">Best Smartphones 2026</p>
       <p class="article-desc">Five current phones tested head-to-head on camera performance, battery life, and real-world value - before you spend $800+ on the wrong one.</p>
       <div class="article-meta"><span>Save $800</span><span class="free-tag">Free</span></div>
+    </a>
+  </div>
+  <div class="article-card">
+    <div class="video-thumb" data-yt="5Ee3uawTCdQ" data-title="Best Laptops for Remote Work 2026">
+      <img src="https://img.youtube.com/vi/5Ee3uawTCdQ/hqdefault.jpg" alt="Best Laptops for Remote Work 2026 — watch the video" loading="lazy"/>
+      <button type="button" class="play-btn" aria-label="Play video: Best Laptops for Remote Work 2026" onclick="loadVideo(this)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
     </div>
-  </a>
-  <a href="library.html" class="article-card">
-    <div class="article-body">
-      <div class="article-cat">Laptops &amp; Desktops</div>
+    <a href="library.html" class="article-body">
       <p class="article-title">Best Laptops for Remote Work 2026</p>
       <p class="article-desc">Five laptops compared on battery life, screen quality, and long-term reliability for remote workers - which one actually earns its price tag?</p>
       <div class="article-meta"><span>Save $600</span><span class="free-tag">Free</span></div>
+    </a>
+  </div>
+  <div class="article-card">
+    <div class="video-thumb" data-yt="AjHJuY957co" data-title="Air Fryer vs Oven 2026">
+      <img src="https://img.youtube.com/vi/AjHJuY957co/hqdefault.jpg" alt="Air Fryer vs Oven 2026 — watch the video" loading="lazy"/>
+      <button type="button" class="play-btn" aria-label="Play video: Air Fryer vs Oven 2026" onclick="loadVideo(this)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
     </div>
-  </a>
-  <a href="library.html" class="article-card">
-    <div class="article-body">
-      <div class="article-cat">Smart Home &amp; Appliances</div>
+    <a href="library.html" class="article-body">
       <p class="article-title">Air Fryer vs Oven 2026</p>
       <p class="article-desc">Does an air fryer really save you money and time over a conventional oven? We ran the numbers on cost, speed, and everyday use.</p>
       <div class="article-meta"><span>Save $551</span><span class="free-tag">Free</span></div>
+    </a>
+  </div>
+  <div class="article-card">
+    <div class="video-thumb" data-yt="XRysVKhskUg" data-title="Best Robot Vacuums 2026">
+      <img src="https://img.youtube.com/vi/XRysVKhskUg/hqdefault.jpg" alt="Best Robot Vacuums 2026 — watch the video" loading="lazy"/>
+      <button type="button" class="play-btn" aria-label="Play video: Best Robot Vacuums 2026" onclick="loadVideo(this)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
     </div>
-  </a>
-  <a href="library.html" class="article-card">
-    <div class="article-body">
-      <div class="article-cat">Smart Home &amp; Appliances</div>
+    <a href="library.html" class="article-body">
       <p class="article-title">Best Robot Vacuums 2026</p>
       <p class="article-desc">Five robot vacuums tested on suction power, mapping accuracy, and maintenance cost - which one is worth the investment?</p>
       <div class="article-meta"><span>Save $600</span><span class="free-tag">Free</span></div>
-    </div>
-  </a>
+    </a>
+  </div>
   <a href="library.html" class="article-card">
     <div class="article-body">
       <div class="article-cat">Transport &amp; Automotive <span class="lock-icon">Locked - Members</span></div>
@@ -235,6 +256,19 @@ body{padding-top:70px}
 function toggleMenu(){
   var m=document.getElementById('mobileMenu');
   m.classList.toggle('open');
+}
+function loadVideo(btn){
+  var wrap=btn.closest('.video-thumb');
+  var id=wrap.getAttribute('data-yt');
+  var title=wrap.getAttribute('data-title')||'Video';
+  var iframe=document.createElement('iframe');
+  iframe.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';
+  iframe.title=title;
+  iframe.setAttribute('allow','accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+  iframe.setAttribute('allowfullscreen','');
+  iframe.setAttribute('loading','lazy');
+  wrap.innerHTML='';
+  wrap.appendChild(iframe);
 }
 </script>
 </body></html>
